@@ -19,6 +19,11 @@
 	</properties>
 
 	<dependencies>
+		<!--公共工具类支持-->
+		<dependency>
+			<groupId>com.wkk.micro</groupId>
+			<artifactId>backend-utils</artifactId>
+		</dependency>
 
 		<!-- mybatis-plus依赖 -->
 		<dependency>

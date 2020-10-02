@@ -8,6 +8,7 @@ import com.wkk.micro.common.dao.entity.MoocBackendUserT;
 import com.wkk.micro.common.dao.entity.MoocUserT;
 import com.wkk.micro.common.dao.mapper.MoocBackendUserTMapper;
 import com.wkk.micro.common.dao.mapper.MoocUserTMapper;
+import com.wkk.micro.utils.util.MD5Util;
 import org.junit.Test;
 
 import javax.annotation.Resource;
@@ -23,18 +24,17 @@ public class UserTest extends BackendCommonApplicationTests {
     private MoocBackendUserTMapper mapper;
 
     @Test
-    public void add(){
+    public void add() {
         MoocBackendUserT userT = new MoocBackendUserT();
-        for (int i = 1; i <= 5; i++) {
-            userT.setUserName("admin" + i);
-            userT.setUserPhone("111111111111");
-            userT.setUserPwd("admin");
-            mapper.insert(userT);
-        }
+        userT.setUserName("admin");
+        userT.setUserPhone("111111111111");
+        userT.setUserPwd(MD5Util.encrypt("admin"));
+
+        mapper.insert(userT);
     }
 
     @Test
-    public void select(){
+    public void select() {
 //        MoocBackendUserT userT = mapper.selectById(2);
 //        System.out.println(userT);
 //        List<MoocBackendUserT> moocBackendUserTList = mapper.selectList(null);
@@ -51,7 +51,7 @@ public class UserTest extends BackendCommonApplicationTests {
     }
 
     @Test
-    public void update(){
+    public void update() {
 //        MoocBackendUserT userT = mapper.selectById(2);
 //        userT.setUuid(2);
 //        userT.setUserName("admin");
@@ -74,11 +74,10 @@ public class UserTest extends BackendCommonApplicationTests {
         );
 
 
-
     }
 
     @Test
-    public void del(){
+    public void del() {
         mapper.deleteById(2);
     }
 
